@@ -5,16 +5,14 @@ import { devtools } from 'frog/dev'
 
 export const app = new Frog({
   title: "AirSwap OTC URL Frame"
-  // Supply a Hub to enable frame verification.
-  // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
 })
 
 app.use('/*', serveStatic({ root: './public' }))
 
 app.frame('/', (c) => {
   console.log(c)
-  const { buttonValue, inputText, status } = c
-  const fruit = inputText || buttonValue
+  const { inputText, status } = c
+  const otcUrl = inputText || undefined
   return c.res({
     image: (
       <div
@@ -22,8 +20,8 @@ app.frame('/', (c) => {
           alignItems: 'center',
           background:
             status === 'response'
-              ? 'linear-gradient(to right, #432889, #17101F)'
-              : 'black',
+              ? '#2c70ff'
+              : '#030712',
           backgroundSize: '100% 100%',
           display: 'flex',
           flexDirection: 'column',
@@ -47,16 +45,14 @@ app.frame('/', (c) => {
           }}
         >
           {status === 'response'
-            ? `Nice choice.${fruit ? ` ${fruit.toUpperCase()}!!` : ''}`
-            : 'Welcome!'}
+            ? `${otcUrl}`
+            : 'Welcome AirSwap OTC Maker!'}
         </div>
       </div>
     ),
     intents: [
-      <TextInput placeholder="Enter custom fruit..." />,
-      <Button value="apples">Apples</Button>,
-      <Button value="oranges">Oranges</Button>,
-      <Button value="bananas">Bananas</Button>,
+      <TextInput placeholder="Enter OTC URL..." />,
+      <Button value={inputText}>Upload</Button>,
       status === 'response' && <Button.Reset>Reset</Button.Reset>,
     ],
   })
