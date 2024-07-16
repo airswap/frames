@@ -1,18 +1,33 @@
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Button, Frog, TextInput } from 'frog'
 import { devtools } from 'frog/dev'
-// import { neynar } from 'frog/hubs'
 
-export const app = new Frog({
-  title: "AirSwap OTC URL Frame"
+type State = {
+  otcUrl: string | undefined
+}
+
+export const app = new Frog<{ State: State }>({
+  title: "AirSwap OTC URL Frame",
+  initialState: {
+    otcUrl: undefined
+  }
 })
+
+// const airswapId = 'https://swap.eth.limo/#/order'
+const airswapId = 'https://swap.eth.limo/#/order/'
 
 app.use('/*', serveStatic({ root: './public' }))
 
 app.frame('/', (c) => {
-  console.log(c)
-  const { inputText, status } = c
+  const { inputText, status, deriveState } = c
+
+  deriveState(previousState => {
+    if (inputText?.includes(airswapId)) {
+      previousState.otcUrl = inputText}
+    })
+
   const otcUrl = inputText || undefined
+
   return c.res({
     image: (
       <div
@@ -44,7 +59,7 @@ app.frame('/', (c) => {
             whiteSpace: 'pre-wrap',
           }}
         >
-          {status === 'response'
+          {status === 'response' && otcUrl
             ? `${otcUrl}`
             : 'Welcome AirSwap OTC Maker!'}
         </div>
@@ -52,8 +67,7 @@ app.frame('/', (c) => {
     ),
     intents: [
       <TextInput placeholder="Enter OTC URL..." />,
-      <Button value={inputText}>Upload</Button>,
-      status === 'response' && <Button.Reset>Reset</Button.Reset>,
+      <Button action="/otcurl">Upload OTC URL</Button>
     ],
   })
 })
