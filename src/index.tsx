@@ -1,6 +1,7 @@
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Button, Frog, TextInput } from 'frog';
 import { devtools } from 'frog/dev';
+import { handle } from 'frog/vercel';
 
 const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
 
@@ -150,5 +151,8 @@ app.frame('/sharable', (c) => {
     ],
   });
 });
+
+export const GET = handle(app);
+export const POST = handle(app);
 
 devtools(app, { serveStatic });
