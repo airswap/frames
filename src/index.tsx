@@ -1,6 +1,7 @@
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Button, Frog, TextInput } from 'frog';
 import { devtools } from 'frog/dev';
+import './styles.css';
 
 const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
 
@@ -26,13 +27,16 @@ app.frame('/', (c) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: '#030712',
+          background: `url(https://i.imgur.com/lKSF2O0.png)`,
+          backgroundSize: '100% 105%',
           color: 'white',
           height: '100%',
           justifyContent: 'center',
           textAlign: 'center',
           width: '100%',
-          fontSize: '30px',
+          fontSize: '25px',
+          fontFamily: 'Loos',
+          fontWeight: '400',
         }}
       >
         Welcome AirSwap OTC Maker!
@@ -63,13 +67,15 @@ app.frame('/orderDetails', (c) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: '#030712',
+          background: `url(https://i.imgur.com/lKSF2O0.png)`,
+          backgroundSize: '100% 105%',
           color: 'white',
           height: '100%',
           justifyContent: 'center',
           textAlign: 'center',
           width: '100%',
           fontSize: '30px',
+          fontFamily: 'Loos',
         }}
       >
         {`Now enter order description below, e.g. "Swap 50 ETH for 200,000 USDC"`}
@@ -96,13 +102,15 @@ app.frame('/otcurl', (c) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: '#030712',
+          background: `url(https://i.imgur.com/lKSF2O0.png)`,
+          backgroundSize: '100% 105%',
           color: 'white',
           height: '100%',
           justifyContent: 'center',
           textAlign: 'center',
           width: '100%',
           fontSize: '30px',
+          fontFamily: 'Loos',
         }}
       >
         {previousState.otcUrl}
@@ -128,13 +136,15 @@ app.frame('/sharable', (c) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: '#030712',
+          background: `url(https://i.imgur.com/lKSF2O0.png)`,
+          backgroundSize: '100% 105%',
           color: 'white',
           height: '100%',
           justifyContent: 'center',
           textAlign: 'center',
           width: '100%',
           fontSize: '30px',
+          fontFamily: 'Loos',
         }}
       >
         {previousState.orderDetails}
