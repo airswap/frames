@@ -1,9 +1,28 @@
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Button, Frog, TextInput } from 'frog';
 import { devtools } from 'frog/dev';
-import './styles.css';
+import { setupSystem } from './utils/styles';
+
+const { Box } = await setupSystem();
 
 const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
+
+const divStyle = (...args: any) => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    background: 'url(https://i.imgur.com/lKSF2O0.png)',
+    backgroundSize: '100% 105%',
+    color: 'white',
+    height: '100%',
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: '100%',
+    fontSize: '30px',
+    ...args,
+  };
+};
 
 type State = {
   otcUrl: string | undefined;
@@ -22,25 +41,11 @@ app.use('/*', serveStatic({ root: './public' }));
 app.frame('/', (c) => {
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: `url(https://i.imgur.com/lKSF2O0.png)`,
-          backgroundSize: '100% 105%',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '25px',
-          fontFamily: 'Loos',
-          fontWeight: '400',
-        }}
-      >
-        Welcome AirSwap OTC Maker!
-        <br /> Enter your OTC URL below{' '}
+      <div style={divStyle()}>
+        <Box>
+          Welcome AirSwap OTC Maker!
+          <br /> Enter your OTC URL below{' '}
+        </Box>
       </div>
     ),
     intents: [
@@ -62,22 +67,7 @@ app.frame('/orderDetails', (c) => {
 
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: `url(https://i.imgur.com/lKSF2O0.png)`,
-          backgroundSize: '100% 105%',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-          fontFamily: 'Loos',
-        }}
-      >
+      <div style={divStyle()}>
         {`Now enter order description below, e.g. "Swap 50 ETH for 200,000 USDC"`}
       </div>
     ),
@@ -97,22 +87,7 @@ app.frame('/otcurl', (c) => {
 
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: `url(https://i.imgur.com/lKSF2O0.png)`,
-          backgroundSize: '100% 105%',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-          fontFamily: 'Loos',
-        }}
-      >
+      <div style={divStyle()}>
         {previousState.otcUrl}
         <br />
         {inputText}
@@ -131,25 +106,9 @@ app.frame('/sharable', (c) => {
   const { previousState } = c;
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: `url(https://i.imgur.com/lKSF2O0.png)`,
-          backgroundSize: '100% 105%',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-          fontFamily: 'Loos',
-        }}
-      >
+      <div style={divStyle()}>
         {previousState.orderDetails}
         <br />
-
         {`(Click "Fill order" to be redirected to AirSwap to take this OTC order!`}
       </div>
     ),
