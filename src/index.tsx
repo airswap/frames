@@ -1,9 +1,6 @@
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Button, Frog, TextInput } from 'frog';
 import { devtools } from 'frog/dev';
-import { setupSystem } from './utils/styles';
-
-const { Box } = await setupSystem();
 
 const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
 
@@ -42,10 +39,8 @@ app.frame('/', (c) => {
   return c.res({
     image: (
       <div style={divStyle()}>
-        <Box>
-          Welcome AirSwap OTC Maker!
-          <br /> Enter your OTC URL below{' '}
-        </Box>
+        Welcome AirSwap OTC Maker!
+        <br /> Enter your OTC URL below{' '}
       </div>
     ),
     intents: [

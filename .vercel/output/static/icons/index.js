@@ -1,4 +1,0 @@
-export { radixIcons } from './radix-icons/index.js';
-export { heroicons } from './heroicons/index.js';
-export { lucide } from './lucide/index.js';
-//# sourceMappingURL=index.js.map
