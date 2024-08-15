@@ -50,7 +50,8 @@ app.frame('/orderDetails', (c) => {
       <div style={divStyles.outerDiv}>
         <div style={divStyles.innerDiv1} />
         <div style={divStyles.innerDiv2}>
-          Now enter order description below, e.g. "Swap 50 ETH for 200,000 USDC"
+          Enter your proposed order details below, e.g. "Swap 50 ETH for 200,000
+          USDC"
         </div>
         <div style={divStyles.innerDiv3} />
       </div>
@@ -58,7 +59,6 @@ app.frame('/orderDetails', (c) => {
     intents: [
       <TextInput placeholder="Now enter order description..." />,
       <Button action="/otcurl">Upload Order Details</Button>,
-      <Button.Reset>Back</Button.Reset>,
     ],
   });
 });

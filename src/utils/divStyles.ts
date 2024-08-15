@@ -10,6 +10,7 @@ export const divStyles = {
     textAlign: 'center',
     fontSize: '30px',
     background: 'url(https://i.imgur.com/lKSF2O0.png)',
+    fontFamily: 'sans',
   },
   innerDiv1: {
     display: 'flex',
