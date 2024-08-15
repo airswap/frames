@@ -1,13 +1,14 @@
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Button, Frog, TextInput } from 'frog';
 import { devtools } from 'frog/dev';
-
-const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
+import { divStyles } from './utils/divStyles';
 
 type State = {
   otcUrl: string | undefined;
   orderDetails: string | undefined;
 };
+
+const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
 
 export const app = new Frog<{ State: State }>({
   title: 'AirSwap OTC URL Frame',
@@ -21,22 +22,10 @@ app.use('/*', serveStatic({ root: './public' }));
 app.frame('/', (c) => {
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: '#030712',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-        }}
-      >
-        Welcome AirSwap OTC Maker!
-        <br /> Enter your OTC URL below{' '}
+      <div style={divStyles.outerDiv}>
+        <div style={divStyles.innerDiv1} />
+        <div style={divStyles.innerDiv2}>Welcome AirSwap OTC Maker!</div>
+        <div style={divStyles.innerDiv3}>Enter your OTC URL below</div>
       </div>
     ),
     intents: [
@@ -58,27 +47,18 @@ app.frame('/orderDetails', (c) => {
 
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: '#030712',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-        }}
-      >
-        {`Now enter order description below, e.g. "Swap 50 ETH for 200,000 USDC"`}
+      <div style={divStyles.outerDiv}>
+        <div style={divStyles.innerDiv1} />
+        <div style={divStyles.innerDiv2}>
+          Enter your proposed order details below, e.g. "Swap 50 ETH for 200,000
+          USDC"
+        </div>
+        <div style={divStyles.innerDiv3} />
       </div>
     ),
     intents: [
       <TextInput placeholder="Now enter order description..." />,
       <Button action="/otcurl">Upload Order Details</Button>,
-      <Button.Reset>Back</Button.Reset>,
     ],
   });
 });
@@ -91,25 +71,17 @@ app.frame('/otcurl', (c) => {
 
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: '#030712',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-        }}
-      >
-        {previousState.otcUrl}
-        <br />
-        {inputText}
-        <br />
-        {`(Click "Share" button below to make this frame sharable with your followers. Otherwise click "Start over")`}
+      <div style={divStyles.outerDiv}>
+        <div style={divStyles.innerDiv1} />
+        <div style={divStyles.innerDiv2}>
+          {previousState.otcUrl}
+          <br />
+          {inputText}
+        </div>
+        <div style={divStyles.innerDiv3}>
+          Click "Share" button below to make this frame sharable with your
+          followers. Otherwise click "Start over"
+        </div>
       </div>
     ),
     intents: [
@@ -123,24 +95,12 @@ app.frame('/sharable', (c) => {
   const { previousState } = c;
   return c.res({
     image: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          background: '#030712',
-          color: 'white',
-          height: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '30px',
-        }}
-      >
-        {previousState.orderDetails}
-        <br />
-
-        {`(Click "Fill order" to be redirected to AirSwap to take this OTC order!`}
+      <div style={divStyles.outerDiv}>
+        <div style={divStyles.innerDiv1} />
+        <div style={divStyles.innerDiv2}>{previousState.orderDetails}</div>
+        <div style={divStyles.innerDiv3}>
+          Click "Fill order" to be redirected to AirSwap to take this OTC order!
+        </div>
       </div>
     ),
     intents: [

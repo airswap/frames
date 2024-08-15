@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Loos';
+  src: url('./assets/fonts/Loos-Black.otf') format('opentype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Loos';
+  src: url('./assets/fonts/Loos-Bold.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Loos';
+  src: url('./assets/fonts/Loos-ExtraLight.otf') format('opentype');
+  font-weight: 200; /* ExtraLight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Loos';
+  src: url('./assets/fonts/Loos-Medium.otf') format('opentype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Loos';
+  src: url('./assets/fonts/Loos-Regular.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
