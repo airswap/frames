@@ -10,45 +10,6 @@ type State = {
 
 const airswapOTCUrl = 'https://swap.eth.limo/#/order/';
 
-const outerDivStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  backgroundSize: '100% 105%',
-  color: 'white',
-  height: '100%',
-  justifyContent: 'center',
-  textAlign: 'center',
-  fontSize: '30px',
-};
-
-const innerDivStyle1 = {
-  display: 'flex',
-  height: '33%',
-};
-
-const innerDivStyle2 = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '80%',
-  height: '33%',
-  fontWeight: '700',
-  fontSize: '45px',
-};
-
-const innerDivStyle3 = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '80%',
-  height: '33%',
-  fontWeight: '700',
-  fontSize: '30px',
-};
-
 export const app = new Frog<{ State: State }>({
   title: 'AirSwap OTC URL Frame',
   initialState: {
